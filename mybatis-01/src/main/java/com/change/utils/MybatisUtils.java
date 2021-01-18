@@ -13,7 +13,7 @@ import java.io.InputStream;
  * @create: 2021-01-04 22:00
  */
 public class MybatisUtils {
-    // 加载 Mysql 驱动
+    //          加载 Mysql 驱动
     //         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
     //         // 数据库连接地址
     //         String dbConnStr = "jdbc:mysql://localhost:3306/ormtest?user=root&password=root";
@@ -57,6 +57,9 @@ public class MybatisUtils {
 
     static {
         try {
+            // 每个基于 MyBatis 的应用都是以一个 SqlSessionFactory 的实例为核心的。
+            // SqlSessionFactory 的实例可以通过 SqlSessionFactoryBuilder 获得。
+            // 而 SqlSessionFactoryBuilder 则可以从 XML 配置文件或一个预先配置的 Configuration 实例来构建出 SqlSessionFactory 实例。
             String resource = "mybatis-config.xml";
             InputStream inputStream = Resources.getResourceAsStream(resource);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);

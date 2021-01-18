@@ -15,4 +15,6 @@ public interface StudentDao {
     // ResultSet
     List<Student> getStudentList();
 
+    int insert(Student student);
+
 }

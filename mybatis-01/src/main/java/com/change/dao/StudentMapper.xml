@@ -5,8 +5,25 @@
 <!--绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.change.dao.StudentDao">
 
+    <sql id="if-title-author">
+        <if test="title != null">
+            title = ""
+        </if>
+        <if test="author != null">
+            and author = ""
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="student">
+        insert into test.student(`name`, score) values (#{name}, #{score})
+    </insert>
+
     <select id="getStudentList" resultType="com.change.pojo.Student">
       select * from test.student;
+      <!--<include refid="if-title-author"></include>-->
+      <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+      </foreach>
     </select>
 
 </mapper>

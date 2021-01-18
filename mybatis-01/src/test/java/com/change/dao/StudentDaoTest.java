@@ -17,7 +17,7 @@ public class StudentDaoTest {
 
     @Test
     public void test() {
-        // 获取SqlSession对象
+        // 获取SqlSession对象，
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         // 执行
         StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
@@ -25,5 +25,23 @@ public class StudentDaoTest {
         System.out.println(studentList);
         sqlSession.close();
     }
+
+
+    @Test
+    public void testInsert() {
+        // 获取SqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        // 执行
+        StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+        Student student = new Student();
+        student.setName("maizi");
+        student.setScore(99);
+        int result = studentDao.insert(student);
+        System.out.println("结果：" + result);
+        // 增删改必须提交事务
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
 
 }
